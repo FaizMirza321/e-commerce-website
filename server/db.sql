@@ -1,12 +1,26 @@
 CREATE DATABASE e-commerce;
 
 CREATE TABLE IF NOT EXISTS products (
-    id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-    brand TEXT,
-    category TEXT,
-    price NUMERIC(10,2) NOT NULL,
-    stock INTEGER DEFAULT 0,
+    item_id SERIAL PRIMARY KEY,
+    item_name TEXT NOT NULL,
+    brand varChar(255),
+    category varChar(255),
+    price NUMERIC(5,2) NOT NULL,
+    stock INTEGER DEFAULT 1,
     description TEXT,
-    image_url TEXT
+    image_url TEXT,
+    user_id foreign KEY
+    
+)
+
+CREATE TABLE IF NOT EXISTS user (
+    user_id SERIAL PRIMARY KEY,
+    name TEXT NOT NULL,
+    password TEXT NOT NULL
+)
+
+CREATE TABLE IF NOT EXISTS orders (
+    order_id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES user(user_id),
+    item_id INT REFERENCES products(item_id)
 )
