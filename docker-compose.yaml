@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: password123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: db123
+    ports:
+      - "5432:5432"
+
+  backend:
+    image: e-commerce-website
+    command: node server/server.js
+    ports:
+      - "9000:9000"
+    depends_on:
+      - db
+
+  frontend:
+    image: e-commerce-website
+    command: npm run dev -- --host 0.0.0.0
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
