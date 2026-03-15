@@ -2,13 +2,13 @@ CREATE DATABASE e-commerce;
 
 CREATE TABLE IF NOT EXISTS products (
     item_id SERIAL PRIMARY KEY,
-    item_name TEXT NOT NULL,
+    title TEXT NOT NULL,
     brand varChar(255),
     category varChar(255),
     price NUMERIC(5,2) NOT NULL,
     stock INTEGER DEFAULT 1,
     description TEXT,
-    image_url TEXT,
+    image VARBINARY(MAX),
     user_id foreign KEY
     
 )

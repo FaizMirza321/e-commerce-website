@@ -31,7 +31,7 @@ async function createTable() {
 async function seedProducts() {
     try {
         await db.query(`
-            INSERT INTO products (name, brand, category, price, stock, description, image_url)
+            INSERT INTO products (title, brand, category, price, stock, description, image)
             VALUES
             ('MacBook Air M2','Apple','Laptop',1199.99,12,'Lightweight Apple laptop','/images/macbook.jpg'),
             ('Dell XPS 13','Dell','Laptop',999.99,8,'Premium Dell ultrabook','/images/dellxps.jpg'),
@@ -54,13 +54,24 @@ app.post('/', (req, res) => {
 
 app.get("/api/products", async (req, res) => {
   try {
-    const result = await db.query("SELECT * FROM products")
+    const result = await db.query("SELECT * FROM products ")
     res.json(result.rows)
   } catch (err) {
     res.status(500).send("Database error")
   }
 })
 
+app.post("/create-listing", async (req, res) => {
+  try {
+    const { title, brand, category, price, stock, description, image_url } = req.body;
+    await db.query(`INSERT INTO products (title, brand, category, price, stock, description, image)
+                    VALUES`,
+                  [title, brand, category, price, stock, description, image_url])
+    res.json(result.rows)
+  } catch (err) {
+    res.status(500).send("Database error")
+  }
+})
 async function waitForDB() {
   let connected = false
 
@@ -75,11 +86,12 @@ async function waitForDB() {
     }
   }
 }
+
 async function startServer() {
   try {
     await waitForDB()
     await createTable()
-    await seedProducts()
+    
   } catch (err) {
     console.error(err)
   }

@@ -1,6 +1,8 @@
+import { useEffect, useState } from "react"
+
 function Login(){
-const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
 
     const onSubmitLogin = async e => {
         try {
@@ -17,16 +19,16 @@ const [name, setName] = useState("");
     }
 
     return (
-    <div>
-      <Navbar />
+      <div>
+        <Navbar />
 
-      <h2 style={{textAlign:"center"}}>Login</h2>
-      <form onSubmit={ onSubmitLogin }>
-        <input type="text" placeholder="username" value={ name } onChange={ e => setName(e.target.value)}/>
-        <input type="password" placeholder="password" value={ password } onChange={ e => setName(e.target.value)}/>
-        <button type="submit">Register</button>
-      </form>
+        <h2 style={{textAlign:"center"}}>Login</h2>
+        <form onSubmit={ onSubmitLogin }>
+          <input type="text" placeholder="username" value={ name } onChange={ e => setName(e.target.value)}/>
+          <input type="password" placeholder="password" value={ password } onChange={ e => setPassword(e.target.value)}/>
+          <button type="submit">Register</button>
+        </form>
 
-    </div>
+      </div>
   )
 }

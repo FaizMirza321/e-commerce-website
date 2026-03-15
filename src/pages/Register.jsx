@@ -24,7 +24,7 @@ function Register(){
       <h2 style={{textAlign:"center"}}>Register</h2>
       <form onSubmit={ onSubmitRegister }>
         <input type="text" placeholder="username" value={ name } onChange={ e => setName(e.target.value)}/>
-        <input type="password" placeholder="password" value={ password } onChange={ e => setName(e.target.value)}/>
+        <input type="password" placeholder="password" value={ password } onChange={ e => setPassword(e.target.value)}/>
         <input type="password" placeholder="confirm password"/>
         <button type="submit">Register</button>
       </form>
