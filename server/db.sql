@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS products (
     stock INTEGER DEFAULT 1,
     description TEXT,
     image VARBINARY(MAX),
-    user_id foreign KEY
+    user_id FOREIGN KEY
     
 )
 

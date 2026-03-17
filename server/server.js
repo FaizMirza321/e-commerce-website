@@ -57,7 +57,7 @@ app.get("/api/products", async (req, res) => {
     const result = await db.query("SELECT * FROM products ")
     res.json(result.rows)
   } catch (err) {
-    res.status(500).send("Database error")
+    res.status(500).send("Database products error")
   }
 })
 
@@ -65,13 +65,26 @@ app.post("/create-listing", async (req, res) => {
   try {
     const { title, brand, category, price, stock, description, image_url } = req.body;
     await db.query(`INSERT INTO products (title, brand, category, price, stock, description, image)
-                    VALUES`,
+                    VALUES $1 $2 $3 $4 $5 $6 $7`,
                   [title, brand, category, price, stock, description, image_url])
     res.json(result.rows)
   } catch (err) {
-    res.status(500).send("Database error")
+    res.status(500).send("Database create listing error")
   }
 })
+
+app.post("/products", async (req, res) => {
+  try {
+    const { title } = req.query;
+    const result = await db.query(
+      "SELECT * FROM products WHERE title ILIKE $1", //search for rows that contain the substring anywhere for title (case insensitive) 
+      [`%${title}%`])
+    res.json(result.rows)
+  } catch (err) {
+    res.status(500).send("Database product search error")
+  }
+})
+
 async function waitForDB() {
   let connected = false
 

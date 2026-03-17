@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-
+import SearchBar from "SearchBar.jsx"
 function Navbar() {
   return (
     <nav style={{
@@ -10,10 +10,7 @@ function Navbar() {
       color:"white"
     }}>
       <h2>E-commerce-for-electronics</h2>
-      <form >
-        <input type="text" placeholder="Search for an item..."  style={{marginRight: "1px"}}/>
-        <button type="submit">Search</button>
-      </form>
+      <SearchBar/>
       <div style={{textDecoration: "none"}}>
           <Link to="/" style={{marginRight:"20px", color:"white"}}>Home</Link>
           <Link to="/products" style={{marginRight:"20px", color:"white"}}>Products</Link>

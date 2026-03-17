@@ -8,11 +8,11 @@ function ProductCard({ product }) {
     }}>
       <img
         src={product.image}
-        alt={product.name}
+        alt={product.title}
         style={{width:"150px"}}
       />
 
-      <h3>{product.name}</h3>
+      <h3>{product.title}</h3>
       <p>${product.price}</p>
 
       <button>Add to Cart</button>
