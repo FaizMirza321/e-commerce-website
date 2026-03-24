@@ -1,6 +1,7 @@
 services:
   db:
     image: postgres
+    restart: always
     environment:
       POSTGRES_PASSWORD: password123
       POSTGRES_USER: postgres

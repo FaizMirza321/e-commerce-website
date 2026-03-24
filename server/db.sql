@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS products (
     
 )
 
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS users (
     user_id SERIAL PRIMARY KEY,
     name TEXT NOT NULL,
     password TEXT NOT NULL
@@ -24,3 +24,11 @@ CREATE TABLE IF NOT EXISTS orders (
     user_id INT REFERENCES user(user_id),
     item_id INT REFERENCES products(item_id)
 )
+
+CREATE TABLE IF NOT EXISTS cart (
+    cart_id SERIAL PRIMARY KEY    
+    user_id INT NOT NULL REFERENCES user(user_id),
+    item_id INT NOT NULL REFERENCES products(item_id),
+    quantity INTEGER DEFAULT 1
+
+)    

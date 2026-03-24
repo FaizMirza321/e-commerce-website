@@ -6,12 +6,12 @@ function Login(){
 
     const onSubmitLogin = async e => {
         try {
-            const body = { name, password }
-            const response = fetch("http://localhost:9000/login", {
-                method: "POST",
-                headers: {"Content-Type:": "application/json"},
-                body: JSON.stringify(body)
-            })
+          const body = { name, password }
+          const response = fetch("http://localhost:9000/login", {
+            method: "POST",
+            headers: {"Content-Type:": "application/json"},
+            body: JSON.stringify(body)
+          })
         } catch (error) {
             
         }
@@ -32,3 +32,4 @@ function Login(){
       </div>
   )
 }
+export default Login
